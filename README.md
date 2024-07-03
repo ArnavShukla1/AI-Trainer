@@ -1,5 +1,5 @@
 # AI-Trainer
-Using Human Pose Detection to Identify and Give Feedback on Workout Form
+Using computer vision and machine learning to correct improper weightlifting form.
 # Abstract:
 # Introduction:
 # Approach:
