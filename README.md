@@ -14,6 +14,15 @@ While Pose Trainer’s function is similar to my goal, it focuses on minor bodil
 My approach is more holistic. Instead of focusing on one or two specific joints, I evaluate the positions of multiple joints relative to each other to provide feedback based on the exercise being performed. Using a Human Pose Estimation model, I track these joints and find relations between them based on known bad form tendencies. Misaligned joints or incorrect distances between them can significantly increase the risk of long-term injury. By identifying these high-level form breakdowns that beginner lifters often overlook, I aim to mitigate potential future injuries.
 # Approach:
 # Part 1: Image Classification
+The first part of my solution involves classifying images. Initially, I aimed to develop a library of human poses corresponding to each exercise, intending to use an image comparison algorithm such as shortest squared distance or structural similarity measure between joints to find the closest match for an input image. However, preliminary testing showed this approach was inconsistent, likely due to camera angle variance. Additionally, the barbell's position relative to the body proved more significant for classification than anticipated. For example, in the bench press, users extend their arms fully, similar to the deadlift, leading to confusion when cross-correlating joints across different exercises.
+
+Due to these issues, I pivoted to a brute-force categorical convolutional neural net (CNN), built using TensorFlow and Keras with the following architecture:
+
+-----------------------------ADD IMAGE HERE-----------------------------------
+
+Using the Bing Web Search API, I scraped 250 images for each chosen exercise: barbell bench press, barbell back squat, and barbell deadlift. After manually filtering out faulty representations and fixing formatting issues, the model achieved ~80% accuracy, prompting me to proceed with using a CNN for classification.
+
+Given the limited size of the initial dataset, I sought to improve accuracy by gathering more images. However, finding high-quality images online proved challenging, as scraping search engines yielded increasingly lower quality results over time. Therefore, I created my own dataset, capturing over 1000 images for each exercise using four different subjects of varying races to mitigate potential bias. This substantial increase in image count was taxing on my computational resources. Finally, I decided to experiment with training the model on a dataset composed entirely of Human Pose Estimation (HPE) output to see what results it would yield.
 # Part 2: Human Pose Estimation
 # Part 3: Form Feedback
 
