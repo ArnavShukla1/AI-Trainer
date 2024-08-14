@@ -35,5 +35,3 @@ Given the limited size of the initial dataset, I sought to improve accuracy by g
 # Part 2: Human Pose Estimation
 
 # Part 3: Form Feedback
-
-d
